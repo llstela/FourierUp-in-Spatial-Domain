@@ -39,7 +39,7 @@ class freup_PeriodicPadding(nn.Module):
         out = torch.complex(real, imag)
 
         output = torch.fft.irfft2(out)
-        output = torch.abs(output)
+        # output = torch.abs(output) # unnecessary abs for irfft 
         ### zero padding in spatial domain
         output_pad = torch.zeros([N, C, 2*H, 2*W],device=x.device)
         output_pad[:,:,0:2*H:2,0:2*W:2] = output
