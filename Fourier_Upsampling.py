@@ -38,7 +38,7 @@ class freup_PeriodicPadding(nn.Module):
         imag = amp_fuse * torch.sin(pha_fuse)
         out = torch.complex(real, imag)
 
-        output = torch.fft.irfft2(out)
+        output = torch.fft.irfft2(out,s=(H,W))
         # output = torch.abs(output) # unnecessary abs for irfft 
         ### zero padding in spatial domain
         output_pad = torch.zeros([N, C, 2*H, 2*W],device=x.device)
